@@ -1,0 +1,31 @@
+{
+  "name": "pipsqueek-js",
+  "version": "0.0.1",
+  "description": "PipSqueek IRC bot for Node.JS",
+  "homepage": "http://github.com/l8nite/pipsqueek-js",
+  "keywords": [
+    "irc",
+    "pipsqueek",
+    "bot"
+  ],
+  "author": "Shaun Guth <shaun.guth@gmail.com>",
+  "contributors": [
+    {
+      "name": "Shaun Guth",
+      "email": "shaun.guth@gmail.com"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/l8nite/pipsqueek-js.git"
+  },
+  "dependencies": {
+    "irc-js": "~2.0.0-beta.1"
+  },
+  "devDependencies": {},
+  "main": "pipsqueek",
+  "engines": {
+    "node": ">= 0.4.0"
+  },
+  "scripts": {}
+}
