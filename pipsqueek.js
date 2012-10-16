@@ -6,11 +6,9 @@ process.addListener('uncaughtException', function (err) {
 });
 
 irc.connect('./config.json', function (bot) {
-    bot.join('#devsqueek', function (channel) {});
+    bot.join('#pipsqueek', function (channel) {});
 
     bot.match(irc.COMMAND.PRIVMSG, function (msg) {
-        msg.client = bot;
-
         if (msg.forMe) {
             msg.reply(msg);
         }
