@@ -1,7 +1,4 @@
 {
-  "//": "This is the default configuration file",
-  "//": "Copy it to your bot and adapt",
-
   "//": "Should the bot crash and burn on errors?",
   "die": false,
 

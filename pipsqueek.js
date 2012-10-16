@@ -1,11 +1,18 @@
-var irc = require("irc-js");
+var irc = require('irc-js');
 
-var pipsqueek = function (bot) {
-    console.log("Connected.");
+process.addListener('uncaughtException', function (err) {
+        console.log("Uncaught exception: " + err);
+        console.trace();
+});
 
-    bot.join('#idlemonkeys', function (channel) {
-        channel.say('Hello!');
+irc.connect('./config.json', function (bot) {
+    bot.join('#devsqueek', function (channel) {});
+
+    bot.match(irc.COMMAND.PRIVMSG, function (msg) {
+        msg.client = bot;
+
+        if (msg.forMe) {
+            msg.reply(msg);
+        }
     });
-};
-
-irc.connect('./config.json', pipsqueek);
+});

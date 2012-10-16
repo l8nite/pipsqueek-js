@@ -20,7 +20,8 @@
     "url": "https://github.com/l8nite/pipsqueek-js.git"
   },
   "dependencies": {
-    "irc-js": "~2.0.0-beta.1"
+    "irc-js": "~2.0.0-beta.1",
+    "watch": "~0.5.1"
   },
   "devDependencies": {},
   "main": "pipsqueek",
