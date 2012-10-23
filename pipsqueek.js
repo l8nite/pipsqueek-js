@@ -1,16 +1,12 @@
-var irc = require('irc-js');
+global._ = require('underscore')._;
 
-process.addListener('uncaughtException', function (err) {
-        console.log("Uncaught exception: " + err);
-        console.trace();
-});
+var pipsqueek = require('./lib/pipsqueek.js').pipsqueek;
 
-irc.connect('./config.json', function (bot) {
-    bot.join('#pipsqueek', function (channel) {});
+// load plugins
+require('./plugins/test.js');
+require('./plugins/math.js');
 
-    bot.match(irc.COMMAND.PRIVMSG, function (msg) {
-        if (msg.forMe) {
-            msg.reply(msg);
-        }
-    });
+// connect to the server
+pipsqueek.connect({
+    nick: 'pipsqueek-js'
 });
