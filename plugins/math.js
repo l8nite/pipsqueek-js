@@ -7,8 +7,11 @@ var evaluator = new TapDigit.Evaluator(context);
 
 pipsqueek.on('math', function (message) {
     try {
-        result = evaluator.evaluate(message.cstring);
-        message.respond(message.cstring + ' = ' + result);
+        var result;
+        _.each( message.cstring.split(';'), function (expr) {
+            result = evaluator.evaluate(expr);
+        });
+        message.respond(result);
     }
     catch (e) {
         message.reply(e);
