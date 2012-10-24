@@ -11,3 +11,9 @@ pipsqueek.connect({
     nick: 'pipsqueek-js'
     // , channel: '#idlemonkeys'
 });
+
+/*
+pipsqueek.client.on('*', function () {
+    console.log("event: " + this.event);
+});
+*/
