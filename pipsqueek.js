@@ -9,7 +9,7 @@ require('./plugins/math.js');
 // connect to the server
 pipsqueek.connect({
     nick: 'pipsqueek-js'
-    // , channel: '#idlemonkeys'
+    ,channel: '#pipsqueek'
 });
 
 /*
