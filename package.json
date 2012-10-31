@@ -25,7 +25,7 @@
     "hiredis": "~0.1.14",
     "eventemitter2": "~0.4.10",
     "async": "~0.1.22",
-    "matheval": "0.0.1"
+    "matheval": "0.0.2"
   },
   "devDependencies": {},
   "main": "pipsqueek",
