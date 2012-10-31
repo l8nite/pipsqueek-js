@@ -1,6 +1,6 @@
 {
   "name": "pipsqueek-js",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "PipSqueek IRC bot for Node.JS",
   "homepage": "http://github.com/l8nite/pipsqueek-js",
   "keywords": [
