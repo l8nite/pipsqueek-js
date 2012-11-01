@@ -12,8 +12,7 @@ pipsqueek.connect({
     ,channel: '#pipsqueek'
 });
 
-/*
 pipsqueek.client.on('*', function () {
     console.log("event: " + this.event);
+    console.log(arguments);
 });
-*/
