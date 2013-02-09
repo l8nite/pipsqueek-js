@@ -1,0 +1,101 @@
+
+sub irc_join
+{
+    my ($self,$message) = @_;
+
+    $self->update_user( $message,
+        {
+        'logged_in' => 1,
+        'last_seen' => time(),
+        'seen_data' => 'joining the channel',
+        'ident' => $message->ident(),
+        'host' => $message->host(),
+        }
+    );
+}
+
+
+sub irc_part
+{
+    my ($self,$message) = @_;
+    my $msg = $message->message();
+
+    $self->update_user( $message, {
+        'logged_in' => 0,
+        'identified' => 0,
+        'last_seen' => time(),
+        'seen_data' => "leaving the channel with message: $msg",
+        'ident' => $message->ident(),
+        'host' => $message->host(),
+    } );
+}
+
+
+sub irc_kick
+{
+    my ($self,$message) = @_;
+    my $target = $message->recipients();
+    my $msg    = $message->message();
+
+    $self->update_user( $target, {
+        'logged_in' => 0,
+        'identified' => 0,
+        'last_seen' => time(),
+        'seen_data' => "being kicked with message: $msg",
+    } );
+}
+
+
+sub irc_quit
+{
+    my ($self,$message) = @_;
+
+    my $msg = $message->message();
+
+    $self->update_user( $message, {
+        'logged_in' => 0,
+        'identified' => 0,
+        'last_seen' => time(),
+        'seen_data' => "quitting the server with message: $msg",
+    } );
+}
+
+
+sub irc_nick
+{
+    my ($self,$message) = @_;
+
+    my $from = $message->nick();
+    my $to   = $message->message();
+
+    if( my $user = $self->search_user($to) )
+    {
+        $self->update_user( $from, { 'logged_in' => 0 } );
+        $self->update_user( $user, {
+            'nickname' => $message->message(),
+            'logged_in' => 1,
+            'last_seen' => time(),
+            'seen_data' => "changing nicks from $from to $to",
+        } );
+    }
+    else
+    {
+        $self->update_user( $message, {
+            'nickname' => $message->message(),
+            'last_seen' => time(),
+            'seen_data' => "changing nicks from $from to $to",
+        } );
+    }
+}
+
+
+sub irc_353
+{
+    my ($self,$message) = @_;
+
+    foreach my $name ( @{ $message->recipients() } )
+    {
+        $name =~ s/^.// if $name =~ /^[%&+@~^]/;
+
+        $self->update_user( $name, {
+            'logged_in' => 1,
